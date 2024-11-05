@@ -29,22 +29,25 @@ import { ChartServiceService } from './services/chart/chart.service.service';
 import { TableTruncatePipe } from './pipes/table/table-truncate.pipe';
 import { AuthInterceptor } from './services/shared/interceptor/api-authorisation.interceptor';
 
-export function MSALInstanceFactory(): IPublicClientApplication {
-  return new PublicClientApplication({
-    auth: {
-      clientId: environment.msalConfig.auth.clientId,
-      authority: environment.msalConfig.auth.authority,
-      redirectUri: '/',
-      postLogoutRedirectUri: '/',
-    },
-    cache: {
-      cacheLocation: BrowserCacheLocation.LocalStorage,
-    },
-    system: {
-      allowNativeBroker: false, 
-
-    },
-  });
+export function MSALInstanceFactory(): IPublicClientApplication | null {
+  if(typeof window !== 'undefined'){
+    return new PublicClientApplication({
+      auth: {
+        clientId: environment.msalConfig.auth.clientId,
+        authority: environment.msalConfig.auth.authority,
+        redirectUri: '/',
+        postLogoutRedirectUri: '/',
+      },
+      cache: {
+        cacheLocation: BrowserCacheLocation.LocalStorage,
+      },
+      system: {
+        allowNativeBroker: false, 
+  
+      },
+    });
+  }
+  return null;
 }
 
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
