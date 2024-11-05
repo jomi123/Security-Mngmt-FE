@@ -67,12 +67,20 @@ export class AddAdminComponentComponent implements OnInit {
   isForwardform = false;
   ngOnInit(): void {
     this.addadminmodalService.addAdminModalVisible$.subscribe((visible) => {
-      this.visibility = visible;
+      if (visible !== null && visible !== undefined) {
+        this.visibility = visible;
+      } else {
+        console.error('Received invalid value for visibility:', visible);
+      }
     });
-
+  
     this.forwardFormService.getAllUsers(true).subscribe((data) => {
-      this.user_details = data;
-      console.log(data);
+      if (data && Array.isArray(data)) {
+        this.user_details = data;
+        console.log(data);
+      } else {
+        console.error('Received invalid data for user details:', data);
+      }
     });
   }
 

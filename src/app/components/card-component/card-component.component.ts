@@ -30,8 +30,10 @@ export class CardComponentComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-    this.sanitizedIconSvg = this.sanitizer.bypassSecurityTrustHtml(
-      this.iconSvg
-    );
+    if (this.iconSvg) {
+      this.sanitizedIconSvg = this.sanitizer.bypassSecurityTrustHtml(this.iconSvg);
+    } else {
+      console.error('iconSvg is null or undefined');
+    }
   }
 }

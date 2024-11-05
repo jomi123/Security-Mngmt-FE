@@ -51,11 +51,21 @@ export class ForwardFormComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.forwardFormService.getAllUsers(false).subscribe((data) => {
-      this.user_details = data;
-      console.log(data);
+      if (data) {
+        this.user_details = data;
+        console.log(data);
+      } else {
+        console.error('Received invalid data for users');
+      }
     });
+  
+    // Ensure incidentId is valid before using it
     this.incidentService.selectedIncidentId$.subscribe((incidentId) => {
-      this.forwardIncidentId = incidentId;
+      if (incidentId) {
+        this.forwardIncidentId = incidentId;
+      } else {
+        console.error('Received invalid incidentId');
+      }
     });
   }
 
