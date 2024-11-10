@@ -1,12 +1,12 @@
 export const environment = {
-  production: false,
+  production: true,
   msalConfig: {
     auth: {
       clientId: '13cd173a-2f30-45a1-8ee8-9b0028cf7f37',
       authority:
         'https://login.microsoftonline.com/5b751804-232f-410d-bb2f-714e3bb466eb',
-      redirectUri: 'http://localhost:4200',
-      postLogoutRedirectUri: 'http://localhost:4200',
+      redirectUri: process.env['NG_APP_REDIRECT_URL'],
+      postLogoutRedirectUri: process.env['NG_APP_REDIRECT_URL'],
     },
   },
   apiConfig: {
@@ -14,6 +14,6 @@ export const environment = {
     uri: 'https://graph.microsoft.com/v1.0/me',
   },
   serverConfig: {
-    baseUrl: 'http://localhost:7209',
+    baseUrl: process.env['NG_APP_BACKEND_URL'],
   },
 };
