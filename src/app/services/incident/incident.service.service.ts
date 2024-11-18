@@ -7,13 +7,14 @@ import {
 import { Injectable, NgModule } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { IncidentData, Incidents } from '../../models/incident-interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class IncidentServiceService {
-  private baseApiUrl = 'http://172.16.4.89:9000/api/Incident';
-  private assignedIncidentApiUrl = 'http://172.16.4.89:9000/api/AssignedIncident';
+  private baseApiUrl = `${environment.serverConfig.baseUrl}/api/Incident`;
+  private assignedIncidentApiUrl = `${environment.serverConfig.baseUrl}/api/AssignedIncident`;
 
   constructor(private http: HttpClient) {}
 
@@ -93,7 +94,7 @@ export class IncidentServiceService {
   ): Observable<IncidentData> {
     return this.http
       .put<IncidentData>(
-        `http://172.16.4.89:9000/api/updateIncidentByReview/${incidentId}`,
+        `${environment.serverConfig.baseUrl}/api/updateIncidentByReview/${incidentId}`,
         incident
       )
       .pipe(catchError(this.handleError));
@@ -103,7 +104,7 @@ export class IncidentServiceService {
   public incidentApproval(incidentId: number): Observable<IncidentData> {
     return this.http
       .get<IncidentData>(
-        `http://172.16.4.89:9000/api/incidentApproval/${incidentId}`
+        `${environment.serverConfig.baseUrl}/api/incidentApproval/${incidentId}`
       )
       .pipe(catchError(this.handleError));
   }
@@ -115,7 +116,7 @@ export class IncidentServiceService {
   ): Observable<IncidentData> {
     return this.http
       .put<IncidentData>(
-        `http://172.16.4.89:9000/api/acceptIncidents/${incidentId}`,
+        `${environment.serverConfig.baseUrl}/api/acceptIncidents/${incidentId}`,
         employeeId
       )
       .pipe(catchError(this.handleError));
@@ -132,7 +133,7 @@ export class IncidentServiceService {
 
   public getNotifications(employeeId: number): Observable<any> {
     return this.http
-      .get<any>(`http://172.16.4.89:9000/api/Notification/${employeeId}`)
+      .get<any>(`${environment.serverConfig.baseUrl}/api/Notification/${employeeId}`)
       .pipe(catchError(this.handleError));
   }
 
@@ -141,7 +142,7 @@ export class IncidentServiceService {
   ): Observable<{ employeeId: number }> {
     return this.http
       .put<{ employeeId: number }>(
-        `http://172.16.4.89:9000/api/Notification/${employeeId}`,
+        `${environment.serverConfig.baseUrl}/api/Notification/${employeeId}`,
         {}
       )
       .pipe(catchError(this.handleError));
@@ -153,7 +154,7 @@ export class IncidentServiceService {
   ): Observable<{ employeeId: number; notificatioId: number }> {
     return this.http
       .put<{ employeeId: number; notificatioId: number }>(
-        `http://172.16.4.89:9000/api/Notification/${employeeId}/${notificatioId}`,
+        `${environment.serverConfig.baseUrl}/api/Notification/${employeeId}/${notificatioId}`,
         {}
       )
       .pipe(catchError(this.handleError));
@@ -162,7 +163,7 @@ export class IncidentServiceService {
   public unreadNotificationCount(employeeId: number): Observable<number> {
     return this.http
       .get<number>(
-        `http://172.16.4.89:9000/api/Notification/unread/count/${employeeId}`
+        `${environment.serverConfig.baseUrl}/api/Notification/unread/count/${employeeId}`
       )
       .pipe(catchError(this.handleError));
   }

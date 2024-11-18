@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
 import { Employee } from '../../../models/employee-interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class EmployeeSharedService {
     this.employeeSubject.next(data);
   }
   private apiUrl =
-    'https://172.16.4.89:9000/api/Employee/GetEmployeeByToken/getUserRole';
+    `${environment.serverConfig.baseUrl}/api/Employee/GetEmployeeByToken/getUserRole`;
   getEmployeeData(token: string) {
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.get(this.apiUrl, { headers, observe: 'response' });

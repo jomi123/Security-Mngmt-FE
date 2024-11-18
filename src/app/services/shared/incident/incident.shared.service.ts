@@ -6,6 +6,7 @@ import { EmployeeSharedService } from '../employee/employee.shared.service';
 import { Router } from '@angular/router';
 import { HttpTransportType, HubConnection, HubConnectionBuilder } from '@microsoft/signalr'; // Import SignalR
 import { AuthServiceService } from '../../Authentication/auth.service.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +37,7 @@ export class IncidentSharedService {
   unReadNotificationsCount$ = this.unReadNotificationsCount.asObservable();
   private createConnection() {
     this.hubConnection = new HubConnectionBuilder()
-    .withUrl('http://172.16.4.89:9000/incidentHub', {
+    .withUrl(`${environment.serverConfig.baseUrl}/incidentHub`, {
       accessTokenFactory: () => {
         const token = localStorage.getItem('accessToken');
         return token ? token : "";  // Fix: Removed the comma here

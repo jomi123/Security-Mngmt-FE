@@ -14,6 +14,7 @@ export const environment = {
     uri: 'https://graph.microsoft.com/v1.0/me',
   },
   serverConfig: {
-    baseUrl: 'http://172.16.4.89:9000',
+    // baseUrl: 'http://172.16.4.89:9000',
+    baseUrl: 'https://security-mngmt-be.onrender.com',
   },
 };
