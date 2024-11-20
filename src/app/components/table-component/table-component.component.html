@@ -24,7 +24,8 @@
                     placeholder="Choose Columns">
                 </p-multiSelect>
                 <div *ngIf="!isadmin" style=" align-items: end;">
-                    <p-button label="Report Incident" icon="pi pi-plus" (click)="openSidebar()" [outlined]="true" />
+                    <p-button label="Report Incident" icon="pi pi-plus" (click)="openSidebar()" [outlined]="true"
+                        class="report-button" />
                 </div>
                 <div style="align-items: end;" *ngIf="isadmin">
                     <button type="button" class="export-button" [hidden]="!isadmin" (click)="exportExcel(dt2)"

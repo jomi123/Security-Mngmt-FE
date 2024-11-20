@@ -173,3 +173,9 @@ ul
     border-radius: 4px;
     margin-left:1rem;
 }
+
+:host ::ng-deep .report-button .p-button{
+    background-color: red !important; /* Button background color */
+    color: white !important;        /* Button text color */
+    border-color: red !important;  
+}
