@@ -70,6 +70,12 @@
                     <textarea matInput formControlName="investigationDetails" rows="4"></textarea>
                 </mat-form-field>
             </div>
+            <div class="form-field">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Root Cause</mat-label>
+                    <textarea matInput formControlName="preventiveAction" rows="4"></textarea>
+                </mat-form-field>
+            </div>
 
             <!-- Associated Impacts, Collection of Evidence, Correction, and Corrective Action Fields -->
             <div class="form-field">
@@ -80,28 +86,23 @@
             </div>
             <div class="form-field">
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Collection of Evidence</mat-label>
+                    <mat-label>Evidences Collected</mat-label>
                     <textarea matInput formControlName="collectionOfEvidence" rows="4"></textarea>
                 </mat-form-field>
             </div>
             <div class="form-field">
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Correction</mat-label>
+                    <mat-label>Correction Done</mat-label>
                     <textarea matInput formControlName="correction" rows="4"></textarea>
                 </mat-form-field>
             </div>
             <div class="form-field">
                 <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Corrective Action</mat-label>
+                    <mat-label>Corrective/Preventive Action</mat-label>
                     <textarea matInput formControlName="correctiveAction" rows="4"></textarea>
                 </mat-form-field>
             </div>
-            <div class="form-field">
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Preventive Action</mat-label>
-                    <textarea matInput formControlName="preventiveAction" rows="4"></textarea>
-                </mat-form-field>
-            </div>
+            
 
             <button class="submit-button  button" type="submit" [appButtonLoading]="isButtonLoading" [disabled]="isButtonLoading">Submit</button>
         </form>

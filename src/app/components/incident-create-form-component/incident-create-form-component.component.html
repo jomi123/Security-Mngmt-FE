@@ -1,4 +1,5 @@
-<p-sidebar [(visible)]="sidebarVisible" position="right" [modal]="true" [showCloseIcon]="true" (onHide)="viewform.reset()">
+<p-sidebar [(visible)]="sidebarVisible" position="right" [modal]="true" [showCloseIcon]="true"
+  (onHide)="viewform.reset()">
   <ng-template pTemplate="header">
     <div class="sidebar-header">
       <h3 class="section-header">Report an Incident</h3>
@@ -24,7 +25,7 @@
       <div class="p-grid p-fluid">
         <div class="p-field p-col-12 p-md-6" style="width: 15rem;">
 
-          <label for="incident-occured-date">Incident Occurred Date <span class="text-danger">*</span></label>
+          <label for="incident-occured-date">Incident Occurred Date and Time <span class="text-danger">*</span></label>
           <p-calendar id="incident-occured-date" formControlName="incidentOccuredDate" dateFormat="dd-mm-yy"
             timeFormat="hh:mm a" [showIcon]="true" [iconDisplay]="'input'" [showTime]="true" [maxDate]="today" required>
           </p-calendar>
@@ -83,16 +84,18 @@
 
       <!-- Buttons Section -->
       <div class="button-group p-d-flex p-ai-center p-jc-center">
-        <button type="button" class="p-button p-component p-button-secondary mx-2 save-button button" (click)="saveAsDraft()" [appButtonLoading]="isButtonLoading" [disabled]="isButtonLoading">
+        <button type="button" class="p-button p-component p-button-secondary mx-2 save-button button"
+          (click)="saveAsDraft()" [appButtonLoading]="isButtonLoading" [disabled]="isButtonLoading">
           <span class="p-button-icon pi pi-save"></span>
           <span class="p-button-label">Save as Draft</span>
         </button>
-        
-        <button type="submit" class="p-button p-component p-button-success mx-2 submit-button button" [appButtonLoading]="isButtonLoading" [disabled]="isButtonLoading">
+
+        <button type="submit" class="p-button p-component p-button-success mx-2 submit-button button"
+          [appButtonLoading]="isButtonLoading" [disabled]="isButtonLoading">
           <span class="p-button-icon pi pi-check-circle"></span>
-          <span class="p-button-label"  >Submit</span>
+          <span class="p-button-label">Submit</span>
         </button>
-        </div>
+      </div>
     </form>
     <p-toast></p-toast>
   </div>

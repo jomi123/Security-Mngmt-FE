@@ -184,7 +184,7 @@ export class EditIncidentFormComponent {
       this.apiService
         .updateIncident(this.editIncidentId, this.editform.value)
         .subscribe((response) => {
-          this.showSuccess('Incident Updated Successfully');
+          this.showSuccess('Incident Updated and Submitted Successfully');
           this.isButtonLoading = false;
         });
     }
