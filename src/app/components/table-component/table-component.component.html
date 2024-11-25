@@ -90,10 +90,11 @@
                     </p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="custom" field="dateField" [showMenu]="false">
+                    <p-columnFilter type="custom" field="dateField" matchMode="equals" [showMenu]="false">
                         <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                             <p-calendar [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
-                                (onSelect)="onDateRangeSelect()">
+                                (ngModelChange)="onDateRangeSelect($event)" appendTo="body" [showClear]="true"
+                                placeholder="Select a range">
                             </p-calendar>
                         </ng-template>
                     </p-columnFilter>
@@ -164,8 +165,8 @@
                     <p-button icon="pi pi-times" [rounded]="true" severity="danger" (click)="onReject(incident)" />
                     }
                     @else if (getAssigned && !incident.accepted) {
-                    <p-button icon="pi pi-check" [rounded]="true" (click)="onIncidentAccept(incident)"
-                        [appButtonLoading]="isButtonLoading" [disabled]="isButtonLoading" />
+                    <p-button label="Accept" [rounded]="true" (click)="onIncidentAccept(incident)"
+                        [appButtonLoading]="isButtonLoading" [disabled]="isButtonLoading" class="accept-button" />
                     }
                     @else
                     {
@@ -180,24 +181,24 @@
                         <i class='bx bx-dots-vertical-rounded' (click)="op.toggle($event)"></i>
                         <p-overlayPanel #op>
                             <div class="custom-overlay">
-                                <ul class="list-none p-0 m-0 flex flex-column gap-3 custom-list">
 
-                                    <li class="flex align-items-center gap-2 custom-item"
-                                        *ngIf="incident.isDraft || isadmin || getAssigned">
-                                        <i class="pi pi-file-edit"
-                                            style="color: #29A0B1; font-size:1.3rem ; margin-left: 8px;"
-                                            (click)="editIncidentData(incident,incident.id)"
-                                            [ngClass]="{'faded-edit-icon': incident.incidentStatus === 'closed'}"></i>
-                                    </li>
-                                    <li class="flex align-items-center gap-2 custom-item" [hidden]="!isadmin">
-                                        <i class="bx bxs-file-pdf" [hidden]="!isadmin"
-                                            (click)="exportPDF(incident)"></i>
-                                    </li>
-                                </ul>
+                                <i class="pi pi-file-edit" *ngIf="incident.isDraft || isadmin || getAssigned"
+                                    style="color: #29A0B1; font-size:1.3rem ; margin-left: 8px; padding-right: 0.3rem;"
+                                    (click)="editIncidentData(incident,incident.id)"
+                                    [ngClass]="{'faded-edit-icon': incident.incidentStatus === 'closed'}"></i>
+                                <p *ngIf="incident.isDraft || isadmin || getAssigned"
+                                    style="font-size: smaller;display: inline;">Edit Incident</p>
+                                <br>
+                                <i [hidden]="!isadmin" class="bx bxs-file-pdf" [hidden]="!isadmin"
+                                    (click)="exportPDF(incident)"></i>
+                                <p [hidden]="!isadmin" style="font-size: smaller; display: inline;">Export Pdf</p>
                             </div>
                         </p-overlayPanel>
-                        <i class="pi pi-send" style="color: #29A0B1; font-size:1.3rem ;"
-                            (click)="onIconClick(incident)"></i>
+                        <span pTooltip="Forward Incident">
+                            <i class="pi pi-send" style="color: #29A0B1; font-size:1.3rem ;"
+                                (click)="onIconClick(incident)"></i>
+                        </span>
+
                     </div>
                     <div class="flex justify-content-center" *ngIf="!isadmin">
                         <i class="bx bxs-edit" (click)="editIncidentData(incident,incident.id)"

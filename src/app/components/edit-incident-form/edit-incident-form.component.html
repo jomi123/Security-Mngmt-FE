@@ -1,7 +1,11 @@
-<div class="body">
+<div class="loader">
+    <p-progressSpinner ariaLabel="loading" *ngIf="loading" />
+</div>
+<div class="body" *ngIf="!loading">
     <p-toast></p-toast>
-    <div class="container" >
-        <form class="form shadow p-5 rounded" [ngClass]="{'expanded': isSidebarExpanded}" [formGroup]="editform" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <form class="form shadow p-5 rounded" [ngClass]="{'expanded': isSidebarExpanded}" [formGroup]="editform"
+            (ngSubmit)="onSubmit()">
             <div class="header-section">
                 <div class="vendor-name">
                     <h2 class="title">Incident {{data.incidentTitle}}, {{data.incidentNo}}
@@ -102,9 +106,10 @@
                     <textarea matInput formControlName="correctiveAction" rows="4"></textarea>
                 </mat-form-field>
             </div>
-            
 
-            <button class="submit-button  button" type="submit" [appButtonLoading]="isButtonLoading" [disabled]="isButtonLoading">Submit</button>
+
+            <button class="submit-button  button" type="submit" [appButtonLoading]="isButtonLoading"
+                [disabled]="isButtonLoading">Submit</button>
         </form>
     </div>
 </div>

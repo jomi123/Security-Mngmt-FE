@@ -19,6 +19,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { ToastModule } from 'primeng/toast';
 import { ButtonLoadingDirective } from 'src/app/shared/ui/button-loading.directive';
 import { Route, Router } from '@angular/router';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-edit-incident-form',
@@ -38,6 +39,7 @@ import { Route, Router } from '@angular/router';
     NgIf,
     CommonModule,
     ButtonLoadingDirective,
+    ProgressSpinnerModule,
   ],
   templateUrl: './edit-incident-form.component.html',
   styleUrl: './edit-incident-form.component.css',
@@ -55,6 +57,7 @@ export class EditIncidentFormComponent {
   documentUrls: { name: string; url: string }[] = [];
   @Input() isSidebarExpanded = false;
   isButtonLoading = false;
+  loading = true;
 
   incidentTypes = [
     { label: 'Security Incident', value: 'SecurityIncident' },
@@ -140,6 +143,7 @@ export class EditIncidentFormComponent {
     this.apiService
       .getSingleFullIncident(this.editIncidentId)
       .subscribe((response) => {
+        this.loading = false;
         console.log(response);
         this.data = response;
         this.editform.patchValue({

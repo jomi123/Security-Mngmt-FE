@@ -179,3 +179,15 @@ ul
     color: white !important;        /* Button text color */
     border-color: red !important;  
 }
+
+:host ::ng-deep .accept-button{
+    padding: 0rem !important;
+}
+
+:host ::ng-deep .calendar{
+    z-index: 1059 !important;
+}
+:host ::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    padding: 0.75rem 0.25rem !important;
+
+}

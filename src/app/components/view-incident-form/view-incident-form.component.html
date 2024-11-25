@@ -120,6 +120,16 @@
                     }
                 </div>
 
+                <div class="info-item corrective-action">
+                    <strong>Root Cause</strong>
+                    @if (data.preventiveAction) {
+                    <p>{{data.preventiveAction}}</p>
+
+                    }
+                    @else {
+                    <p class="no-content">-</p>
+                    }
+                </div>
 
                 <div class="info-item collection-evidence">
                     <strong>Collection of Evidence</strong>
@@ -152,16 +162,7 @@
                     }
                 </div>
 
-                <div class="info-item corrective-action">
-                    <strong>Preventive Action</strong>
-                    @if (data.preventiveAction) {
-                    <p>{{data.preventiveAction}}</p>
 
-                    }
-                    @else {
-                    <p class="no-content">-</p>
-                    }
-                </div>
 
                 <div class="info-item remarks">
                     <strong>Remarks</strong>

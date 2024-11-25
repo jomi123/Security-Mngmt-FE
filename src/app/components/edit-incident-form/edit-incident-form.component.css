@@ -202,4 +202,16 @@
 .submit-button:hover {
     background-color: #45a049;
 }
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensure full width */
+  height: 100%; /* Adjust as needed for your layout */
+  position: absolute; /* Overlay the spinner */
+  top: 0;
+  left: 0;
+  z-index: 9999; /* Ensures it is above other content */
+}
+
 

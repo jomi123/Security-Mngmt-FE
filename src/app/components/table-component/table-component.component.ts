@@ -616,16 +616,19 @@ export class TableComponentComponent implements OnInit, OnChanges {
   }
 
   rangeDates: Date[] = [];
-  onDateRangeSelect() {
-    const [startDate, endDate] = this.rangeDates;
+  onDateRangeSelect(event: any) {
+    if (this.dt2) {
+      const [startDate, endDate] = this.rangeDates;
 
-    if (startDate && endDate) {
-      this.incidents = this.incidents.filter((item) => {
-        const itemDate = new Date(item.createdAt);
-        return itemDate >= startDate && itemDate <= endDate;
-      });
+      if (startDate && endDate) {
+        this.incidents = this.incidents.filter((item) => {
+          const itemDate = new Date(item.createdAt);
+          return itemDate >= startDate && itemDate <= endDate;
+        });
+      } else {
+        this.dt2.clear();
+      }
     }
-
   }
 
   onFileChange(evt: any) {
@@ -657,12 +660,12 @@ export class TableComponentComponent implements OnInit, OnChanges {
     const fileInput = document.getElementById('fileInput') as HTMLInputElement;
     fileInput.click();
   }
-  
+
   downloadExcel() {
     // Create an anchor element
     const link = document.createElement('a');
     link.href = 'assets/Template.xlsx'; // Path to your Excel file
     link.download = 'template.xlsx'; // Name the downloaded file
-    link.click(); 
+    link.click();
   }
 }
