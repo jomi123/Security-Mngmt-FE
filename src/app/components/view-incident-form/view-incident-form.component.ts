@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IncidentServiceService } from 'src/app/services/incident/incident.service.service';
@@ -6,11 +5,12 @@ import { IncidentSharedService } from 'src/app/services/shared/incident/incident
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { IncidentData } from 'src/app/models/incident-interface';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-view-incident-form',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProgressSpinnerModule],
   templateUrl: './view-incident-form.component.html',
   styleUrl: './view-incident-form.component.css',
 })
@@ -20,9 +20,10 @@ export class ViewIncidentFormComponent {
     private router: Router,
     private incidentService: IncidentSharedService
   ) {}
-  data!: IncidentData ;
+  data!: IncidentData;
   id = 0;
   documentUrls: { name: string; url: string }[] = [];
+  loading = true;
 
   getStatus(status: string): string {
     switch (status) {
@@ -48,6 +49,7 @@ export class ViewIncidentFormComponent {
 
   fetchIncident() {
     this.apiService.getSingleFullIncident(this.id).subscribe((response) => {
+      this.loading = false;
       console.log(response);
       if (response.incidentOccuredDate) {
         const incidentDate = new Date(response.incidentOccuredDate);
@@ -68,6 +70,6 @@ export class ViewIncidentFormComponent {
   }
 
   redirectToDashboard(): void {
-    this.router.navigate(['/user'])
+    this.router.navigate(['/user']);
   }
 }
