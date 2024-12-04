@@ -7,7 +7,12 @@
         <div class="header-section">
             <div class="vendor-name">
                 <h2 class="title">Incident {{data.incidentTitle}}, {{data.incidentNo}}
-                    <span [ngClass]="getStatus(data.incidentStatus)" class="status-badge">{{data.incidentStatus}}</span>
+                    <span [ngClass]="getStatus(data.incidentStatus)"
+                        *ngIf="data.incidentStatus!=='progress' && data.incidentStatus!=='review'"
+                        class="status-badge">{{data.incidentStatus}}</span>
+                    <span [ngClass]="getStatus(data.incidentStatus)"
+                        *ngIf="data.incidentStatus=='progress'||data.incidentStatus=='review'" class="status-badge">In
+                        {{data.incidentStatus}}</span>
                 </h2>
                 <span class="created-info">Created by {{data.reportedBy}},{{data.roleOfReporter}}
                     {{data.incidentOccuredDate| date:'dd-MM-yyyy, hh:mm a'}} </span>

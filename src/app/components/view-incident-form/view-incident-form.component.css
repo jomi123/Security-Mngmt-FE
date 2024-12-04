@@ -95,9 +95,13 @@ h2{
   background-color: green;
 }
 
+.status-in-review{
+  background-color: grey;
+}
+
 .status-pending,
 .status-in-progress,
-.status-closed {
+.status-closed,.status-in-review {
   color: white;
 }
 
