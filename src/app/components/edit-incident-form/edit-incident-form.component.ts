@@ -99,6 +99,8 @@ export class EditIncidentFormComponent {
         return 'status-in-progress';
       case 'closed':
         return 'status-closed';
+      case 'review':
+        return 'status-in-review';
       default:
         return '';
     }
